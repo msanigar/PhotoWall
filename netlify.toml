@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+# Netlify Dev: listen on 5174 (so the URL that opens in the browser works). Vite runs on 5175.
+[dev]
+  command = "npm run dev:netlify:vite"
+  targetPort = 5175
+  port = 5174
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["sharp"]
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
